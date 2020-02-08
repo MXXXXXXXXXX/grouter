@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/MXXXXXXXXXX/grouter"
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/xujiajun/gorouter"
 )
 
 type statusRecorder struct {
@@ -59,7 +58,7 @@ func withTracing(next http.HandlerFunc) http.HandlerFunc {
 }
 
 func main() {
-	mux := gorouter.New()
+	mux := grouter.New()
 	mux.NotFoundFunc(notFoundFunc)
 	mux.Use(withLogging, withTracing, withStatusRecord)
 	mux.GET("/", func(w http.ResponseWriter, r *http.Request) {
